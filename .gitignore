@@ -1,0 +1,20 @@
+# CICFlowMeter — сторонний инструмент (ahlashkari/CICFlowMeter), клонируется
+# отдельно (см. README), в этот репозиторий не вендорится: своя история,
+# бинарные .jar из jnetpcap, большой размер.
+CICFlowMeter/
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Сгенерированные тестовые артефакты (pcap/csv захватов, рантайм-логи) —
+# не исходники, создаются заново при каждом прогоне.
+demo/logs/*.log
+ids-project/ids_events.log
+*.pcap
+*_Flow.csv
+
+# прочее
+.DS_Store
