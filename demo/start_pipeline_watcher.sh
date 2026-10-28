@@ -16,9 +16,10 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CICFM_DIR="$(cd "$SCRIPT_DIR/../CICFlowMeter" && pwd)"
-IDS_DIR="/home/nurbol/ids-project"
+IDS_DIR="$(cd "$SCRIPT_DIR/../ids-project" && pwd)"
 
 mkdir -p "$CICFM_DIR/data/in" "$CICFM_DIR/data/out" "$CICFM_DIR/data/processed"
+mkdir -p "$SCRIPT_DIR/logs"
 
 echo ">>> Запускаю фоновый обработчик pcap -> CICFlowMeter (каждые 10 сек)"
 (

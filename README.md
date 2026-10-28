@@ -42,7 +42,7 @@
 ```bash
 cd ids-project
 python3 -m venv venv
-./venv/bin/pip install scikit-learn xgboost joblib pandas numpy flask
+./venv/bin/pip install -r requirements.txt
 ```
 
 ### 2. CICFlowMeter (не входит в репозиторий — сторонний инструмент)
@@ -92,5 +92,5 @@ sudo tcpdump -i lo -w "CICFlowMeter/data/in/live_%Y%m%d_%H%M%S.pcap" -G 20 -W 20
 ```
 
 tcpdump сам нарезает захват каждые 20 сек (без сигналов — на некоторых системах
-AppArmun-профиль `/etc/apparmor.d/usr.bin.tcpdump` блокирует `SIGTERM`/`SIGKILL`
+AppArmor-профиль `/etc/apparmor.d/usr.bin.tcpdump` блокирует `SIGTERM`/`SIGKILL`
 даже от root, поэтому полагаться на `timeout`/`kill` для остановки нельзя).

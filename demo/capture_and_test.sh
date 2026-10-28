@@ -27,7 +27,7 @@ fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CICFM_DIR="$(cd "$SCRIPT_DIR/../CICFlowMeter" && pwd)"
-IDS_DIR="/home/nurbol/ids-project"
+IDS_DIR="$(cd "$SCRIPT_DIR/../ids-project" && pwd)"
 
 TS=$(date +%Y%m%d_%H%M%S)
 PCAP_NAME="${MODE}_${TS}.pcap"
