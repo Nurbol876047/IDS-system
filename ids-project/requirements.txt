@@ -1,7 +1,7 @@
 pandas
 numpy
 scikit-learn
-xgboost
+xgboost==2.1.4
 joblib
 imbalanced-learn
 flask

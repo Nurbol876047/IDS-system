@@ -16,7 +16,7 @@ import os
 import joblib
 import pandas as pd
 
-from live_ids_watcher import align_features, log_event
+from live_ids_watcher import align_features, load_model_artifacts, log_event
 
 
 def main():
@@ -26,10 +26,7 @@ def main():
     parser.add_argument("--note", default="", help="Метка теста для лога, например 'benign' или 'flood'")
     args = parser.parse_args()
 
-    model = joblib.load(os.path.join(args.model_dir, "ids_model.joblib"))
-    scaler = joblib.load(os.path.join(args.model_dir, "scaler.joblib"))
-    label_encoder = joblib.load(os.path.join(args.model_dir, "label_encoder.joblib"))
-    feature_cols = joblib.load(os.path.join(args.model_dir, "feature_columns.joblib"))
+    model, scaler, label_encoder, feature_cols = load_model_artifacts(args.model_dir)
 
     df = pd.read_csv(args.csv, encoding="latin1", low_memory=False)
     df.columns = [c.strip() for c in df.columns]
