@@ -64,6 +64,21 @@ LOG_FILE = "ids_events.log"
 NEVER_BLOCK = {"127.0.0.1"}
 
 
+def load_model_artifacts(model_dir: str):
+    try:
+        model = joblib.load(os.path.join(model_dir, "ids_model.joblib"))
+        scaler = joblib.load(os.path.join(model_dir, "scaler.joblib"))
+        label_encoder = joblib.load(os.path.join(model_dir, "label_encoder.joblib"))
+        feature_cols = joblib.load(os.path.join(model_dir, "feature_columns.joblib"))
+    except Exception as exc:  # pragma: no cover - runtime dependency mismatch guard
+        raise RuntimeError(
+            "Не удалось загрузить model_out/*.joblib. Убедись, что установлены "
+            "зависимости из requirements.txt и что XGBoost не обновлялся без "
+            "повторного обучения модели."
+        ) from exc
+    return model, scaler, label_encoder, feature_cols
+
+
 def log_event(msg: str):
     line = f"[{datetime.now().isoformat(timespec='seconds')}] {msg}"
     print(line)
@@ -193,10 +208,7 @@ def main():
     parser.add_argument("--enforce", action="store_true", help="Реально блокировать через iptables (нужен root). Без флага — только лог, dry-run.")
     args = parser.parse_args()
 
-    model = joblib.load(os.path.join(args.model_dir, "ids_model.joblib"))
-    scaler = joblib.load(os.path.join(args.model_dir, "scaler.joblib"))
-    label_encoder = joblib.load(os.path.join(args.model_dir, "label_encoder.joblib"))
-    feature_cols = joblib.load(os.path.join(args.model_dir, "feature_columns.joblib"))
+    model, scaler, label_encoder, feature_cols = load_model_artifacts(args.model_dir)
 
     log_event(f"Модель загружена. Классы: {list(label_encoder.classes_)}")
     log_event(f"Слежу за {args.flows_dir}, режим: {'ENFORCE (реальная блокировка)' if args.enforce else 'DRY-RUN (только лог)'}")
