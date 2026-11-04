@@ -19,7 +19,7 @@ CICIDS2017 — обучение модели детектора сетевых �
     python train_ids_model.py --data_dir /path/to/cicids2017_csvs --out_dir ./model_out
 
 Требования:
-    pip install pandas numpy scikit-learn xgboost imbalanced-learn joblib
+    pip install -r requirements.txt
 """
 
 import argparse

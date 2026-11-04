@@ -67,8 +67,12 @@ groups                    # ваш пользователь должен быт�
 ```bash
 cd ids-project
 python3 -m venv venv
-./venv/bin/pip install scikit-learn xgboost joblib pandas numpy flask scapy
+./venv/bin/pip install -r requirements.txt
 ```
+
+Важно: в этом проекте используется совместимая версия XGBoost `2.1.4`, потому что
+сохранённая модель из `model_out/` сериализована под соответствующий формат. При
+обновлении зависимостей не меняйте версию XGBoost без повторного обучения модели.
 
 ## Запуск демо
 
