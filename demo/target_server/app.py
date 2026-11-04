@@ -55,7 +55,7 @@ PAGE = """<!doctype html>
 </style>
 </head>
 <body>
-<h1>🔎 Digital Detective — учебная «жертва»</h1>
+<h1>Digital Detective — учебная «жертва»</h1>
 <p class="muted">Простой сайт для демонстрации работы IDS. Каждый запрос пишется в лог
   <code>demo/logs/target_requests.log</code>. Параллельно сетевой IDS (CICFlowMeter + ML)
   следит за трафиком на уровне пакетов — его вердикты смотри на дашборде.</p>
@@ -75,7 +75,7 @@ PAGE = """<!doctype html>
 </div>
 
 <div class="card danger">
-  <h3>⚡ Симулировать DDoS / бот-наплыв</h3>
+  <h3>Симулировать DDoS / бот-наплыв</h3>
   <form action="/simulate/flood" method="post">
     <input type="submit" value="Запустить всплеск запросов (10 сек, localhost)">
   </form>
@@ -115,7 +115,7 @@ def home():
 @app.route("/visit")
 def visit():
     log_request("visit")
-    return PAGE.format(status='<p class="ok">✅ Зашёл как обычный пользователь.</p>')
+    return PAGE.format(status='<p class="ok">Зашёл как обычный пользователь.</p>')
 
 
 @app.route("/search")
@@ -159,10 +159,10 @@ def simulate_flood():
          "--concurrency", concurrency],
     )
     return PAGE.format(
-        status=f'<p class="ok">⚡ Запущен всплеск запросов на {duration} сек '
+        status=f'<p class="ok">Запущен всплеск запросов на {duration} сек '
                f'({concurrency} параллельных потоков). Смотри дашборд.</p>'
     )
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=False)
+    app.run(host="0.0.0.0", port=5000, debug=False)

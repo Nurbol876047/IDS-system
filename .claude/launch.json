@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "target-server",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["demo/target_server/app.py"],
+      "port": 5000
+    },
+    {
+      "name": "dashboard",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["demo/dashboard/app.py"],
+      "port": 5050
+    }
+  ]
+}

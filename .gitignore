@@ -13,6 +13,8 @@ venv/
 # не исходники, создаются заново при каждом прогоне.
 demo/logs/*.log
 ids-project/ids_events.log
+ids-project/live_capture/
+ids-project/live_engine.status
 *.pcap
 *_Flow.csv
 
